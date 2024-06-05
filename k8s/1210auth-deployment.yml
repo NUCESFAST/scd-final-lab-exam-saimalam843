@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth
-        image: your-docker-hub-username/auth:latest
+        image: saimalam843/auth:latest
         ports:
         - containerPort: 4210
         resources:

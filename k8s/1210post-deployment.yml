@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: classrooms-deployment
+  name: post-deployment
   labels:
-    app: classrooms
+    app: post
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: classrooms
+      app: post
   template:
     metadata:
       labels:
-        app: classrooms
+        app: post
     spec:
       containers:
-      - name: classrooms
-        image: your-docker-hub-username/classrooms:latest
+      - name: post
+        image: saimalam843/post:latest
         ports:
-        - containerPort: 5210
+        - containerPort: 6210
         resources:
           requests:
             memory: "64Mi"
@@ -29,12 +29,12 @@ spec:
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 5210
+            port: 6210
           initialDelaySeconds: 5
           periodSeconds: 10
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 5210
+            port: 6210
           initialDelaySeconds: 15
           periodSeconds: 20
