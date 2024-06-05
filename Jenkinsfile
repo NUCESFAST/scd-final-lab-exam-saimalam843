@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the source code from the repository
-                git 'https://github.com/your/repository.git'
+                git 'https://github.com/NUCESFAST/scd-final-lab-exam-saimalam843'
             }
         }
         
