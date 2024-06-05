@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: classrooms-deployment
+  labels:
+    app: classrooms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: classrooms
+  template:
+    metadata:
+      labels:
+        app: classrooms
+    spec:
+      containers:
+      - name: classrooms
+        image: your-docker-hub-username/classrooms:latest
+        ports:
+        - containerPort: 5210
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 5210
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 5210
+          initialDelaySeconds: 15
+          periodSeconds: 20

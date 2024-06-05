@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # Auth Service
+  auth:
+    build: ./Auth
+    ports:
+      - "4210:4210"
+    volumes:
+      - ./Auth:/app
+    depends_on:
+      - mongo
+
+  # Classrooms Service
+  classrooms:
+    build: ./Classrooms
+    ports:
+      - "5210:5210"
+    volumes:
+      - ./Classrooms:/app
+    depends_on:
+      - mongo
+
+  # Post Service
+  post:
+    build: ./Post
+    ports:
+      - "6210:6210"
+    volumes:
+      - ./Post:/app
+    depends_on:
+      - mongo
+
+  # MongoDB Service
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
